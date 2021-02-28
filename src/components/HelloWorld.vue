@@ -18,7 +18,7 @@
 
 <script>
 import { eraStats, eraStatsCorrectDate } from "../const";
-import { blocksFound } from "../authors";
+// import { blocksFound } from "../authors";
 
 export default {
   name: "HelloWorld",
@@ -55,17 +55,17 @@ export default {
   mounted() {
     this.eraStats = eraStats;
     this.eraStatsCorrectDate = eraStatsCorrectDate;
-    this.blocksFound = blocksFound;
+    // this.blocksFound = blocksFound;
   },
   computed: {
     // a computed getter
     stats: function () {
-      const author = this.blocksFound.filter(b => b.author === this.stash)
-      if (author.length > 0) {
-        const activeEras = author[0].activeEras
-        return this.eraStats.filter(s => activeEras.indexOf(s.eraNumber) > -1);
-      }      
-      return []
+      // const author = this.blocksFound.filter(b => b.author === this.stash)
+      // if (author.length > 0) {
+      //   const activeEras = author[0].activeEras
+      //   return this.eraStats.filter(s => activeEras.indexOf(s.eraNumber) > -1);
+      // }      
+      return this.eraStats
     }
   },
   methods: {
