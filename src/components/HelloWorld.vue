@@ -17,7 +17,8 @@
 </template>
 
 <script>
-import { eraStats, eraStatsCorrectDate, blocksFound } from "../const";
+import { eraStats, eraStatsCorrectDate } from "../const";
+import { blocksFound } from "../authors";
 
 export default {
   name: "HelloWorld",
