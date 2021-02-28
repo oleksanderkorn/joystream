@@ -1,11 +1,12 @@
 <template>
   <div>
     <h2>JoyStream Era Stats:</h2>
+    <b-form-input v-model="stash" placeholder="Enter your stash address"></b-form-input>
     <b-table
       sticky-header="800px"
       striped
       hover
-      :items="eraStats"
+      :items="stats"
       :fields="fields"
     >
       <template #cell(timestampEnded)="data">
@@ -16,13 +17,14 @@
 </template>
 
 <script>
-import { eraStats, eraStatsCorrectDate } from "../const";
+import { eraStats, eraStatsCorrectDate, blocksFound } from "../const";
 
 export default {
   name: "HelloWorld",
 
   data() {
     return {
+      stash: '',
       fields: [
         {
           label: "Era",
@@ -46,11 +48,24 @@ export default {
       ],
       eraStats: [],
       eraStatsCorrectDate: [],
+      blocksFound: [],
     };
   },
   mounted() {
     this.eraStats = eraStats;
     this.eraStatsCorrectDate = eraStatsCorrectDate;
+    this.blocksFound = blocksFound;
+  },
+  computed: {
+    // a computed getter
+    stats: function () {
+      const author = this.blocksFound.filter(b => b.author === this.stash)
+      if (author.length > 0) {
+        const activeEras = author[0].activeEras
+        return this.eraStats.filter(s => activeEras.indexOf(s.eraNumber) > -1);
+      }      
+      return []
+    }
   },
   methods: {
     getCorrectDate: function (item) {
