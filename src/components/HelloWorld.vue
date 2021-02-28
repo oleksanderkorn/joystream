@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>JoyStream Era Stats:</h2>
-    <b-form-input v-model="stash" placeholder="Enter your stash address"></b-form-input>
+    <!-- <b-form-input v-model="stash" placeholder="Enter your stash address"></b-form-input> -->
     <b-table
       sticky-header="800px"
       striped
