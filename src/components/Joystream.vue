@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import { eraStats, blocksFound } from "../const";
+import { eraStats, blocksFound } from "../validators";
 
 export default {
-  name: "HelloWorld",
+  name: "Joystream",
 
   data() {
     return {

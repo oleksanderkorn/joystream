@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <img width="50" height="50" alt="Vue logo" src="./assets/joystream.svg">
-    <HelloWorld/>
+    <Joystream/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Joystream from './components/Joystream.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Joystream
   }
 }
 </script>
