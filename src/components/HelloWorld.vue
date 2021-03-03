@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h2>JoyStream Era Stats:</h2>
-    <!-- <b-form-input v-model="stash" placeholder="Enter your stash address"></b-form-input> -->
+    <h2>JoyStream Era Stats (valid up to block 2247560 and era 3862):</h2>
+    <b-form-input v-model="stash" placeholder="Enter your stash address"></b-form-input>
     <b-table
       sticky-header="800px"
       striped
@@ -10,15 +10,14 @@
       :fields="fields"
     >
       <template #cell(timestampEnded)="data">
-        {{ getCorrectDate(data.item) }}
+        {{ new Date(data.item.timestampEnded).toLocaleDateString("ru") }}
       </template>
     </b-table>
   </div>
 </template>
 
 <script>
-import { eraStats, eraStatsCorrectDate } from "../const";
-// import { blocksFound } from "../authors";
+import { eraStats, blocksFound } from "../const";
 
 export default {
   name: "HelloWorld",
@@ -38,7 +37,7 @@ export default {
           sortable: true,
         },
         {
-          key: "startHeight",
+          key: "endHeight",
           label: "Block",
           sortable: true,
         },
@@ -48,42 +47,26 @@ export default {
         },
       ],
       eraStats: [],
-      eraStatsCorrectDate: [],
       blocksFound: [],
     };
   },
   mounted() {
     this.eraStats = eraStats;
-    this.eraStatsCorrectDate = eraStatsCorrectDate;
-    // this.blocksFound = blocksFound;
+    this.blocksFound = blocksFound;
   },
   computed: {
-    // a computed getter
     stats: function () {
-      // const author = this.blocksFound.filter(b => b.author === this.stash)
-      // if (author.length > 0) {
-      //   const activeEras = author[0].activeEras
-      //   return this.eraStats.filter(s => activeEras.indexOf(s.eraNumber) > -1);
-      // }      
+      const author = this.blocksFound.filter(b => b.author === this.stash)
+      if (author.length > 0) {
+        const activeEras = author[0].activeEras
+        return this.eraStats.filter(s => activeEras.indexOf(s.eraNumber) > -1);
+      }      
       return this.eraStats
     }
-  },
-  methods: {
-    getCorrectDate: function (item) {
-      const era = eraStatsCorrectDate.filter(
-        (e) => e.eraNumber === item.eraNumber
-      )[0];
-      if (era) {
-        return new Date(era.timestampEnded).toLocaleDateString("ru");
-      } else {
-        return new Date(item.timestampEnded).toLocaleDateString("ru");
-      }
-    },
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
   margin: 40px 0 0;
