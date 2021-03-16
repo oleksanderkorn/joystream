@@ -4,5 +4,5 @@ npm run build
 cd dist
 git add .
 git commit -m 'Deploy to Github Pages'
-git push
+git push --force
 cd ..
