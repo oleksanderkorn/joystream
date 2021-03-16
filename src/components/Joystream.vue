@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>JoyStream Era Stats (valid up to block 2247560 and era 3862):</h2>
+    <h2>JoyStream Era Stats (valid up to block 2440000 and era 4196):</h2>
     <b-form-input v-model="stash" placeholder="Enter your stash address"></b-form-input>
     <b-table
       sticky-header="800px"
