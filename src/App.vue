@@ -1,17 +1,19 @@
 <template>
   <div id="app">
     <img width="50" height="50" alt="Vue logo" src="./assets/joystream.svg">
-    <Joystream/>
+    <!-- <router-link to="/">Validators.js</router-link> -->
+    <!-- <router-link to="/live">Live Data</router-link> -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Joystream from './components/Joystream.vue'
+// import Joystream from './components/Joystream.vue'
 
 export default {
   name: 'App',
   components: {
-    Joystream
+    // Joystream
   }
 }
 </script>
