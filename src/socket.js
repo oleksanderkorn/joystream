@@ -1,6 +1,6 @@
 import Vue from "vue"
-// const wsUrl = "wss://joystream.herokuapp.com/"
-const wsUrl = "ws://localhost:3000/"
+const wsUrl = "wss://joystream.herokuapp.com/"
+    // const wsUrl = "ws://localhost:3000/"
 const socket = new WebSocket(wsUrl)
 
 const emitter = new Vue({
