@@ -36,7 +36,7 @@
       </b-col>
     </b-row>
     <b-table
-      sticky-header="800px"
+      sticky-header="500px"
       striped
       hover
       :items="statistics"
@@ -51,8 +51,7 @@
 
 <script>
 export default {
-  name: "Joystream",
-
+  name: "JoystreamLive",
   data() {
     return {
       isLoading: false,
@@ -107,6 +106,21 @@ export default {
       console.log(`Connection to ${wsUrl} websocket server closed.`);
     };
   },
+  // unmounted() {
+  //   console.log(`Component unmounted.`)
+  // },
+  // watch: {
+  //   $route(to, from) {
+  //     console.log(`Route change from [${from}] to [${to}]`)
+  //   }
+  // },
+  // beforeRouteUpdate(to, from, next) {
+  //   console.log(`Route change from [${from}] to [${to}]`)
+  //   console.log("Close WS connection.")
+  //   this.connection.send("stop");
+  //   this.connection.close();
+  //   next()
+  // },
   methods: {
     loadStatistics: function () {
       if (this.isLoading) {

@@ -3,7 +3,7 @@
     <h2>JoyStream Era Stats Chain 5 (valid up to block #1073741, era 1792):</h2>
     <b-form-input v-model="stash" placeholder="Enter your stash address"></b-form-input>
     <b-table
-      sticky-header="500px"
+      sticky-header="800px"
       striped
       hover
       :items="stats"

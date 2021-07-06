@@ -1,8 +1,23 @@
 <template>
   <div id="app">
-    <img width="50" height="50" alt="Vue logo" src="./assets/joystream.svg">
-    <!-- <router-link to="/">Validators.js</router-link> -->
-    <!-- <router-link to="/live">Live Data</router-link> -->
+    <b-navbar variant="faded" type="light">
+      <b-navbar-brand>
+        <img
+          width="50"
+          height="50"
+          alt="Vue logo"
+          src="./assets/joystream.svg"
+        />
+      </b-navbar-brand>
+      <b-navbar-nav>
+        <b-nav-item>
+          <router-link to="/">Validators.js</router-link>
+        </b-nav-item>
+        <b-nav-item>
+          <router-link to="/live">Live Data</router-link>
+        </b-nav-item>
+      </b-navbar-nav>
+    </b-navbar>
     <router-view></router-view>
   </div>
 </template>
@@ -11,11 +26,11 @@
 // import Joystream from './components/Joystream.vue'
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     // Joystream
-  }
-}
+  },
+};
 </script>
 
 <style>
@@ -25,7 +40,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 60px; */
 }
 img {
   border-radius: 25px;
