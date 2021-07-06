@@ -50,12 +50,13 @@
 </template>
 
 <script>
+import Socket from '../socket'
+
 export default {
   name: "JoystreamLive",
   data() {
     return {
       isLoading: false,
-      connection: null,
       stash: "5EhDdcWm4TdqKp1ew1PqtSpoAELmjbZZLm5E34aFoVYkXdRW",
       startBlock: 1069639,
       endBlock: 1270177,
@@ -87,50 +88,27 @@ export default {
       statistics: [],
     };
   },
-  mounted() {
-    // this.connection = new WebSocket("ws://localhost:3000/")
-    const wsUrl = "wss://joystream.herokuapp.com/";
-    this.connection = new WebSocket(wsUrl);
-    const stats = this.statistics;
-    this.connection.onmessage = function (event) {
-      const status = JSON.parse(event.data).status;
-      console.log(status);
-      if (status) stats.push(status);
-    };
-    this.connection.onopen = function (event) {
-      console.log(event);
-      console.log(`Successfully connected to ${wsUrl} websocket server.`);
-    };
-    this.connection.onclose = function (event) {
-      console.log(event);
-      console.log(`Connection to ${wsUrl} websocket server closed.`);
-    };
+  created(){
+      Socket.$on("message", this.handleMessage)
   },
-  // unmounted() {
-  //   console.log(`Component unmounted.`)
-  // },
-  // watch: {
-  //   $route(to, from) {
-  //     console.log(`Route change from [${from}] to [${to}]`)
-  //   }
-  // },
-  // beforeRouteUpdate(to, from, next) {
-  //   console.log(`Route change from [${from}] to [${to}]`)
-  //   console.log("Close WS connection.")
-  //   this.connection.send("stop");
-  //   this.connection.close();
-  //   next()
-  // },
+  beforeDestroy(){
+      Socket.$off("message", this.handleMessage)
+  },
   methods: {
+    handleMessage(msg){
+      const status = JSON.parse(msg).status;
+      if (status) {
+        this.statistics.push(status);
+      }
+    },
     loadStatistics: function () {
       if (this.isLoading) {
         this.isLoading = false;
-        this.connection.send("stop");
+        Socket.send('stop')
       } else {
         this.isLoading = true;
-        this.connection.send(
-          `${this.stash}|${this.startBlock}|${this.endBlock}`
-        );
+        const msg = `${this.stash}|${this.startBlock}|${this.endBlock}`
+        Socket.send(msg)
       }
     },
   },
